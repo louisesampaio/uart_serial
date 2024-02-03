@@ -2,6 +2,7 @@
 #define UART_H
 
 #include "driver/uart.h"
+#include "driver/gpio.h"
 
 #define BUFF_WRITE_NUM (5)
 #define BUFF_WRITE_CARACTER (1)
@@ -27,8 +28,7 @@
 * @param[in] rx receptor
 * @return retorna ESP_OK se sucesso, retorna ESP_FAIL se erro
 */
-int uart_init(int baud_rate, int tx, int rx);
-
+int uart_init(int baud_rate, gpio_num_t tx, gpio_num_t rx);
 
 /*! @brief essa função escreve um número
 * @param[in] num numero a escrever

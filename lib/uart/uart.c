@@ -1,7 +1,10 @@
 #include "uart.h"
 
-int uart_init(int baud_rate, int tx, int rx)
+
+int uart_init(int baud_rate, gpio_num_t tx, gpio_num_t rx)
 {
+    int default_tx = 1,  default_rx = 3;
+  
     uart_config_t my_uart_config = 
     {
         .baud_rate = baud_rate,
@@ -16,12 +19,23 @@ int uart_init(int baud_rate, int tx, int rx)
         if(get_ret != ESP_OK) return ESP_FAIL;
     get_ret = uart_param_config(UART_NUM_0, &my_uart_config);
         if(get_ret != ESP_OK) return ESP_FAIL;
-    get_ret = uart_set_pin(UART_NUM_0, tx, rx, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
+
+    if( tx < 0 || rx < 0)
+    {
+        get_ret = uart_set_pin(UART_NUM_0, default_tx, default_rx, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
         if(get_ret != ESP_OK) return ESP_FAIL;
+    }
+    else
+    {
+        get_ret = uart_set_pin(UART_NUM_0, tx, rx, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
+        if(get_ret != ESP_OK) return ESP_FAIL;
+    }
+    
     return ESP_OK;
 
 }
 
+// Função esta aceitando valores diferentes de inteiros, favor corrigir
 int uart_write_num(int num)
 {
     int dado[BUFF_WRITE_NUM] = {num};
