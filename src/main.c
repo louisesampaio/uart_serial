@@ -15,6 +15,8 @@ void app_main()
             if (data[0] == DATA_REQUEST && data[1] == DATA_CONTROL_LED && data[2] == DATA_COMMAND_LED_ON )
             {
                 gpio_set_level(GPIO_NUM_2, HIGH);
+                uart_write_num(CHECKSUM);
+                uart_read(data, MNSG_SIZE);
             }
             
         }

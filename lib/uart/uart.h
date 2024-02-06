@@ -32,28 +32,28 @@ int uart_init(int baud_rate, gpio_num_t tx, gpio_num_t rx);
 
 /*! @brief essa função escreve um número
 * @param[in] num numero a escrever
-* @return retorna 0 se sucesso, retorna -1 se erro
+* @return retorna WRITE_PARAM_SUCESS se sucesso, retorna WRITE_PARAM_ERROR se erro
 */
 int uart_write_num(int num);
 
 
 /*! @brief essa função envia um char 
 * @param[in] msg char a escrever
-* @return retorna 0 se sucesso, retorna -1 se erro
+* @return retorna WRITE_PARAM_SUCESS se sucesso, retorna WRITE_PARAM_ERROR se erro
 */
 int8_t uart_write_caracter(char msg);
 
 
 /*! @brief essa função envia uma string
 * @param[in] strng mensagem a escrever
-* @return retorna 0 se sucesso, retorna -1 se erro
+* @return retorna WRITE_PARAM_SUCESS se sucesso, retorna WRITE_PARAM_ERROR se erro
 */
 int uart_write_strng(char *strng);
 
 /*! @brief essa função envia uma msg via serial
 * @param[in] storage mensagem a escrever
 * @param[in] msg_size tamanho da msg
-* @return retorna 0 se sucesso, retorna -1 se erro
+* @return retorna WRITE_PARAM_SUCESS se sucesso, retorna WRITE_PARAM_ERROR se erro
 */
 int uart_read(int *storage, size_t msg_size);
 
